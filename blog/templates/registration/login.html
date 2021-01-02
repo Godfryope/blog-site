@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Log In{% endblock title %}
+
+{% block content %}
+  <!-- Page Header -->
+  <header class="masthead" style="background: url(../static_in_env/img/home-bg.jpg); background-size: cover; background-position: center center">
+    <div class="overlay">
+          <div class="site-hading">
+          </div>
+    </div>
+  </header>
+
+    <div style="margin-bottom: 60px; margin-top: 100px" class="col-4 offset-4">
+      <form method="post">
+          {% csrf_token %}
+          {{ form|crispy }}
+          <button type="submit">Log In</button>
+      </form>
+    </div>
+{% endblock content %}

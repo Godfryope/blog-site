@@ -1,0 +1,46 @@
+
+        <aside class="col-lg-4">
+            <!-- Widget [Search Bar Widget]-->
+            <div class="widget search">
+              <header>
+                <h3 class="h6">Search the blog</h3>
+              </header>
+              <form action="#" class="search-form">
+                <div class="form-group">
+                  <input type="search" placeholder="What are you looking for?">
+                  <button type="submit" class="submit"><i class="icon-search"></i></button>
+                </div>
+              </form>
+            </div>
+            <!-- Widget [Latest Posts Widget]        -->
+            <aside class="widget latest-posts">
+              <header>
+                <h3 class="h6">Latest Post</h3>
+              </header>
+              <div class="blog-posts">
+                {% for list in posts %}
+                <a href="{{ list.get_absolute_url }}">
+                  <div class="item d-flex align-items-center">
+                    <div class="title"><h5>{{list.title}}</h5><strong>{{list.overview|safe}}</strong>
+                      <div class="d-flex align-items-center">
+                        <div class="views"><i class="icon-eye"></i>{{list.views}}</div>
+                        <div class="comments"><i class="icon-comment"></i>{{list.comment_count}}</div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                {% endfor %}
+              </div>
+            </aside>
+            <!-- Widget [Categories Widget]-->
+            <div class="widget categories">
+              <header>
+                <h3 class="h6">Categories</h3>
+              </header>
+              <div class="item d-flex justify-content-between"><a href="#">Growth</a><span>12</span></div>
+              <div class="item d-flex justify-content-between"><a href="#">Local</a><span>25</span></div>
+              <div class="item d-flex justify-content-between"><a href="#">Sales</a><span>8</span></div>
+              <div class="item d-flex justify-content-between"><a href="#">Tips</a><span>17</span></div>
+              <div class="item d-flex justify-content-between"><a href="#">Local</a><span>25</span></div>
+            </div>
+        </aside>

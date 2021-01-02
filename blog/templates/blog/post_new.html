@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div style="margin-bottom: 60px; margin-top: 100px" class="col-9 offset-2">
+    <h1 class="col-4 offset-4">New post</h1>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        {{ form.media }}
+        <input type="submit" value="Save" />
+    </form>
+</div>
+
+{% endblock content %}

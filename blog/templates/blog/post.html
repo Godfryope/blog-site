@@ -1,0 +1,136 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+  <!-- Page Header -->
+  <header class="masthead" style="background: url(../static_in_env/img/post-bg.jpg); background-size: cover; background-position: center center">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Enter Your Theme Here</h1>
+            <span class="subheading">A Blog Theme by Start Bootstrap</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+          <a style="color:deepskyblue; text-decoration: none;" href="{% url 'post_edit' post.pk %}">+ Edit Post</a>
+      </div>
+      <div class="col-6">
+          <a style="color:deepskyblue; text-decoration: none;" href="{% url 'post_delete' post.pk %}">- delete Post</a>
+      </div>
+    </div>
+  </div>
+  <article>
+    <div class="container">
+      <div class="row">
+        <div style="margin-top: 100px" class="col-lg-8 col-md-10 mx-auto">
+          <h2>{{post.title}}</h2>
+          <p>{{post.overview|safe}}</p>
+            {% for img in image %}
+            <img src="{{post.image.url}}">
+            {% endfor %}
+            <hr style="padding-bottom: 20%">
+            <hr>
+            {% for comment in comment_form %}
+            <ul class="comment-section">
+
+                <li class="comment user-comment">
+
+                    <div class="info">
+                        <a href="#">{{comment.name}}</a>
+                        <span>4 hours ago</span>
+                    </div>
+
+                    <a class="avatar" href="#">
+                        <img src="{% static 'img/avatar_user_1.jpg' %}" width="35" alt="Profile Avatar" title="Anie Silverston" />
+                    </a>
+
+                    <p>Suspendisse gravida sem?</p>
+
+                </li>
+
+                <li class="comment author-comment">
+
+                    <div class="info">
+                        <a href="#">Jack Smith</a>
+                        <span>3 hours ago</span>
+                    </div>
+
+                    <a class="avatar" href="#">
+                        <img src="{% static 'img/avatar_author.jpg' %}" width="35" alt="Profile Avatar" title="Jack Smith" />
+                    </a>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse gravida sem sit amet molestie portitor.</p>
+
+                </li>
+
+                <li class="comment user-comment">
+
+                    <div class="info">
+                        <a href="#">Bradley Jones</a>
+                        <span>1 hour ago</span>
+                    </div>
+
+                    <a class="avatar" href="#">
+                        <img src="{% static 'img/avatar_user_2.jpg' %}" width="35" alt="Profile Avatar" title="Bradley Jones" />
+                    </a>
+
+                    <p>Suspendisse gravida sem sit amet molestie portitor?</p>
+
+                </li>
+
+                <li class="comment author-comment">
+
+                    <div class="info">
+                        <a href="#">Jack Smith</a>
+                        <span>1 hour ago</span>
+                    </div>
+
+                    <a class="avatar" href="#">
+                        <img src="{% static 'img/avatar_author.jpg' %}" width="35" alt="Profile Avatar" title="Jack Smith" />
+                    </a>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisee gravida sem sit amet molestie porttitor.</p>
+
+                </li>
+
+                <li class="write-new">
+
+                    <form action="#" method="post">
+
+                        <textarea placeholder="Write your comment here" name="comment"></textarea>
+
+                        <div>
+                            <img src="{% static 'img/avatar_user_2.jpg' %}" width="35" alt="Profile of Bradley Jones" title="Bradley Jones" />
+                            <button type="submit">Submit</button>
+                        </div>
+
+                    </form>
+
+                </li>
+
+            </ul>
+            {% endfor %}
+
+        </div>
+        {% include 'blog/asidebar.html' with posts=posts %}
+      </div>
+    </div>
+  </article>
+
+  <hr>
+
+
+{% include "blog/footer.html" %}
+{% endblock content %}

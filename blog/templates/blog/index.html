@@ -1,0 +1,68 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+  <!-- Page Header -->
+  <header class="masthead" style="background: url(../static_in_env/img/home-bg.jpg); background-size: cover; background-position: center center">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Enter Your Theme Here</h1>
+            <span class="subheading">A Blog Theme by Start Bootstrap</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+   <div class="container">
+    <div class="row">
+      <div class="col-6">
+          <a style="color:green; text-decoration: none;" href="{% url 'post_new' %}">+ New Post</a>
+      </div>
+    </div>
+   </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        {% for list in object_list %}
+        <div class="post-preview">
+          <a href="{{ list.get_absolute_url }}">
+            <h2 class="post-title">
+              {{list.title}}
+            </h2>
+            <h3 class="post-subtitle">
+              {{list.overview|safe}}
+            </h3>
+          </a>
+          <p class="post-meta">Posted by
+            <a href="#">{{list.author}}</a>
+            on {{ list.timestamp|date:"M d, Y"}}</p>
+        </div>
+        <hr>
+        {% endfor %}
+        <!-- Pager -->
+        {% if page_obj.has_previous %}
+        <div>
+          <a class="btn btn-primary float-left" href="{{ request.path }}?page={{ page_obj.previous_page_number }}">&#11207; Newer Posts</a>
+        </div>
+        {% endif %}
+        {% if page_obj.has_next %}
+        <div class="clearfix">
+          <a class="btn btn-primary float-right" href="?page={{ page_obj.next_page_number }}">Older Posts &#11208;</a>
+        </div>
+        {% endif %}
+      </div>
+      {% include 'blog/asidebar.html' with posts=posts %}
+
+    </div>
+  </div>
+  <hr>
+
+
+{% include "blog/footer.html" %}
+{% endblock content %}
+

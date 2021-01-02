@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+
+
+{% block content %}
+<div  style="margin-bottom: 60px; margin-top: 100px" class="col-4 offset-4">
+    <h1>Delete post</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete <strong style="color: #4DC7A0"> "{{ post.title }}"?</strong></p>
+        <input style="color: darkmagenta; background: darkgoldenrod; border: none" type="submit" value="Confirm" />
+    </form>
+</div>
+
+{% endblock content %}
